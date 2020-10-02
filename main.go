@@ -1,7 +1,8 @@
 package main
 
 import (
-    "fmt"
+	"fmt"
+	//"bufio"
     "io/ioutil"
     "net/http"
 	"encoding/json"
@@ -9,6 +10,7 @@ import (
 	"os"
 	//"reflect"
 )
+
 
 
 func main() {
@@ -30,7 +32,7 @@ func main() {
 	} else if *restserver == "" {
 		fmt.Println("\nWarning ! No DataCore SANsymphony REST api server set")
 		fmt.Println("Add -restserver=x where x is IP or DNS of DataCore SANsymphony REST api server")
-		fmt.Println("We will use DataCore SANsymphony server as REST api server")
+		fmt.Println("We will use DataCore SANsymphony server as REST api server\n")
 		restserver = dcsserver
 	}
 	if *user == "" {
@@ -65,7 +67,7 @@ func main() {
 	var hosts []host
 	json.Unmarshal([]byte(data), &hosts)
 	  
-	
+	fmt.Println(hosts)
 
 
 	resp_servers, err := client.Do(&req_servers)

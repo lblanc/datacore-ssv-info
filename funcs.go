@@ -6,6 +6,11 @@ import (
 	"os"
 )
 
+func check(e error) {
+    if e != nil {
+        panic(e)
+    }
+}
 func restRequest(dcsserver string, restserver string, user string, passwd string, target string)  http.Request {
 	req, err := http.NewRequest("GET", "http://"+ restserver +"/RestService/rest.svc/1.0/"+ target, nil)
 	if err != nil {
