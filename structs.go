@@ -300,3 +300,105 @@ type preferredserver struct {
 	ExtendedCaption string `json:"ExtendedCaption,omitempty"`
 	Internal bool `json:"Internal,omitempty"`
 }
+
+type servergroup struct {
+	OurGroup bool `json:"OurGroup,omitempty"`
+	Alias  string `json:"Alias,omitempty"`
+	Description  string `json:"Description,omitempty"`
+	State  float64 `json:"State,omitempty"`
+	SmtpSettings struct {
+		SmtpServer string `json:"SmtpServer,omitempty"`
+		EmailAddress string `json:"EmailAddress,omitempty"`
+		Username string `json:"Username,omitempty"`
+		TcpPort string `json:"TcpPort,omitempty"`
+		UseSSL bool `json:"UseSSL,omitempty"`
+	} `json:"SmtpSettings,omitempty"`
+	LicenseSettings  struct {
+		MaxServers  float64 `json:"MaxServers,omitempty"`
+		MaxPartnerGroups  float64 `json:"MaxPartnerGroups,omitempty"`
+		MaxMappedHosts  float64 `json:"MaxMappedHosts,omitempty"`
+		BidirectionalReplication  float64 `json:"BidirectionalReplication,omitempty"`
+		FiberChannel  float64 `json:"FiberChannel,omitempty"`
+		ThinProvisioning  float64 `json:"ThinProvisioning,omitempty"`
+		Snapshot  float64 `json:"Snapshot,omitempty"`
+		iSCSI  float64 `json:"iSCSI,omitempty"`
+		StorageCapacity struct {
+			Value  float64 `json:"Value,omitempty"`
+		} `json:"StorageCapacity,omitempty"`
+		LicensedBulkStorage  struct {
+			Value float64 `json:"Value,omitempty"`
+		} `json:"LicensedBulkStorage,omitempty"`
+		BulkEnabled  float64 `json:"BulkEnabled,omitempty"`
+		RetentionTime   float64 `json:"RetentionTime,omitempty"`
+		AutoTiering   float64 `json:"AutoTiering,omitempty"`
+		HeatMaps   float64 `json:"HeatMaps,omitempty"`
+		SharedStorage   float64 `json:"SharedStorage,omitempty"`
+		PerformanceAnalysis   float64 `json:"PerformanceAnalysis,omitempty"`
+		ResourceAuthorization   float64 `json:"ResourceAuthorization,omitempty"`
+		SequentialStorage   float64 `json:"SequentialStorage,omitempty"`
+		MaxBypassThreads   float64 `json:"VaMaxBypassThreadslue,omitempty"`
+		MaxPollerThreads   float64 `json:"MaxPollerThreads,omitempty"`
+		Mirroring   float64 `json:"Mirroring,omitempty"`
+		Witness   float64 `json:"Witness,omitempty"`
+		DataAtRestEncryption   float64 `json:"DataAtRestEncryption,omitempty"`
+	} `json:"LicenseSettings,omitempty"`
+	LicenseType  float64 `json:"LicenseType,omitempty"`
+	ContactData struct {
+		ContactName  string `json:"ContactName,omitempty"`
+		PhoneNumber  string `json:"PhoneNumber,omitempty"`
+		EmailAddress  string `json:"EmailAddress,omitempty"`
+		CompanyName  string `json:"CompanyName,omitempty"`
+	} `json:"ContactData,omitempty"`
+	StorageUsed  struct {
+		Value  float64 `json:"Value,omitempty"`
+	} `json:"StorageUsed,omitempty"`
+	BulkStorageUsed struct {
+		Value  float64 `json:"Value,omitempty"`
+	} `json:"BulkStorageUsed,omitempty"`
+	MaxStorage  struct {
+		Value  float64 `json:"Value,omitempty"`
+	} `json:"MaxStorage,omitempty"`
+	RecoverySpeed  float64 `json:"RecoverySpeed,omitempty"`
+	ExistingProductKeys  []struct {
+		Key string `json:"Key,omitempty"`
+        LastFive string `json:"LastFive,omitempty"`
+        ServerId string `json:"ServerId,omitempty"`
+        Capacity struct {
+            Value float64 `json:"Value,omitempty"`
+        } `json:"Capacity,omitempty"`
+        ActualCapacity struct {
+            Value float64 `json:"Value,omitempty"`
+        } `json:"ActualCapacity,omitempty"`
+        CapacityConsumed struct {
+            Value float64 `json:"Value,omitempty"`
+        } `json:"CapacityConsumed,omitempty"`
+        KeyCode string `json:"KeyCode,omitempty"`
+        ProductName string `json:"ProductName,omitempty"`
+        SKU string `json:"SKU,omitempty"`
+        ExpirationDate string `json:"ExpirationDate,omitempty"`
+        KeyType float64 `json:"KeyType,omitempty"`
+        Subscription bool `json:"Subscription,omitempty"`
+        IsBaseLicense bool `json:"IsBaseLicense,omitempty"`
+        Expired bool `json:"Expired,omitempty"`
+	} `json:"ExistingProductKeys,omitempty"`
+	DataCoreStorageUsed struct {
+		Value  float64 `json:"Value,omitempty"`
+	} `json:"DataCoreStorageUsed,omitempty"`
+	SupportBundleRelayAddress  string `json:"SupportBundleRelayAddress,omitempty"`
+	MirrorTrunkMappingEnabled  bool `json:"MirrorTrunkMappingEnabled,omitempty"`
+	SelfHealingDelay  float64 `json:"SelfHealingDelay,omitempty"`
+	DefaultWitness  string `json:"DefaultWitness,omitempty"`
+	DefaultWitnessOption  float64 `json:"SelfHeaDefaultWitnessOptionlingDelay,omitempty"`
+	WitnessAllowed  bool `json:"WitnessAllowed,omitempty"`
+	Telemetry  string `json:"Telemetry,omitempty"`
+	DefaultKmipEndpoint  string `json:"DefaultKmipEndpoint,omitempty"`
+	CrashRecoveryCount  float64 `json:"CrashRecoveryCount,omitempty"`
+	OutOfCompliance  bool `json:"OutOfCompliance,omitempty"`
+	NextExpirationDate  string `json:"NextExpirationDate,omitempty"`
+	LicenseRemaining  float64 `json:"LicenseRemaining,omitempty"`
+	SequenceNumber  float64 `json:"SequenceNumber,omitempty"`
+	Id  string `json:"Id,omitempty"`
+	Caption  string `json:"Caption,omitempty"`
+	ExtendedCaption  string `json:"ExtendedCaption,omitempty"`
+	Internal  bool `json:"Internal,omitempty"`
+}

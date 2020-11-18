@@ -8,6 +8,9 @@ import (
 	"encoding/json"
 	"flag"
 	"os"
+	"time"
+	"strconv"
+	"strings"
 	//"reflect"
 )
 
@@ -48,12 +51,16 @@ func main() {
 		os.Exit(0)
 	}
 	
-	req_hosts := restRequest(*dcsserver , *restserver , *user , *passwd , "hosts")
-	req_servers := restRequest(*dcsserver , *restserver , *user , *passwd , "servers")
+	//req_hosts := restRequest(*dcsserver , *restserver , *user , *passwd , "hosts")
+	//req_servers := restRequest(*dcsserver , *restserver , *user , *passwd , "servers")
+	req_servergroups := restRequest(*dcsserver , *restserver , *user , *passwd , "servergroups")
 	//fmt.Println(reflect.TypeOf(*req))
 
 	client := &http.Client{
 	}
+
+	// get hosts
+	/*
 	resp_hosts, err := client.Do(&req_hosts)
 	if err != nil {
 		fmt.Printf("The HTTP request failed with error %s\n", err)
@@ -67,9 +74,11 @@ func main() {
 	var hosts []host
 	json.Unmarshal([]byte(data), &hosts)
 	  
-	fmt.Println(hosts)
+	//fmt.Println(hosts)
+	
 
 
+	//get servers
 	resp_servers, err := client.Do(&req_servers)
 	if err != nil {
 		fmt.Printf("The HTTP request failed with error %s\n", err)
@@ -82,8 +91,46 @@ func main() {
 	data, _ = ioutil.ReadAll(resp_servers.Body)
 	var servers []server
 	json.Unmarshal([]byte(data), &servers)
-	  
-	 
+	
+	*/
+
+
+	//get servergroups
+	resp_servergroups, err := client.Do(&req_servergroups)
+	if err != nil {
+		fmt.Printf("The HTTP request failed with error %s\n", err)
+		os.Exit(0)
+	} else if resp_servergroups.Status != "200 OK"{
+		fmt.Printf("The HTTP request failed with error %s\n", resp_servergroups.Status)
+		os.Exit(0)
+	}
+	
+	data, _ := ioutil.ReadAll(resp_servergroups.Body)
+	var servergroups []servergroup
+	json.Unmarshal([]byte(data), &servergroups) 
+
+
+	//print out
+
+	for _, item := range servergroups{
+		fmt.Printf("\n%s (Local group: %v)\n",item.Caption,item.OurGroup)
+		for _, item2 := range item.ExistingProductKeys{
+			s := strings.TrimPrefix(item2.ExpirationDate, "/Date(")
+			s = s[:len(s)-7]
+			i, err := strconv.ParseInt(s, 10, 64)
+			if err != nil {
+			}
+			fmt.Println(item2.ProductName)
+			fmt.Println(item2.LastFive)
+			fmt.Println(time.Unix(i/1000, 0))
+			
+			
+		}
+
+	}
+
+
+	/*
 	for _, item := range hosts{
 		client := &http.Client{
 		}
@@ -103,10 +150,9 @@ func main() {
 		} else {
 			fmt.Println(item.Caption, "|", "None")
 		}
-		
-		
 	   
 	}
+	*/
 	
 	
 	
